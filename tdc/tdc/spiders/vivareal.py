@@ -7,7 +7,7 @@ class VivaRealSpider(scrapy.Spider):
         for item in response.xpath("//div[contains(@class, 'results-list')]/div"):
             href = item.xpath(".//h2/a/@href").extract_first()
             yield scrapy.Request(
-                f'https://www.vivareal.com.br{href}', self.parse_detail
+                'https://www.vivareal.com.br{}'.format(href), self.parse_detail
             )
     def parse_detail(self, response):
         yield {
